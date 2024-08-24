@@ -27,6 +27,17 @@ struct ContentView: View {
                     pathStore.path.append(admin)
                 }
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarLeading) {
+                    Button("Tap Me") {
+                        // button action here
+                    }
+
+                    Button("Tap Me 2") {
+                        // button action here
+                    }
+                }
+            }
             .navigationDestination(for: Guest.self) { user in
                 UserDetailView(user: user, path: $pathStore.path) {
                     pathStore.path = NavigationPath()
@@ -37,6 +48,12 @@ struct ContentView: View {
                     pathStore.path = NavigationPath()
                 }
             }
+
+            .navigationTitle("Navigation Exmple")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.blue)
+            .toolbarColorScheme(.dark)
+           
         }
     }
 }
