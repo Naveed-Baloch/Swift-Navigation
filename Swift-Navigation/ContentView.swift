@@ -28,12 +28,12 @@ struct ContentView: View {
                 }
             }
             .navigationDestination(for: Guest.self) { user in
-                UserDetailView(for: user) {
+                UserDetailView(user: user, path: $path) {
                     path = NavigationPath()
                 }
             }
             .navigationDestination(for: Admin.self) { admin in
-                UserDetailView(for: admin) {
+                UserDetailView(user: admin,path: $path) {
                     path = NavigationPath()
                 }
             }
@@ -49,19 +49,15 @@ protocol User {
 
 struct UserDetailView<T: User>: View {
     let user: T
+    @Binding var path : NavigationPath
     let onBack: () -> Void
-    
-    init(for user: T, onBack: @escaping () -> Void) {
-        self.user = user
-        self.onBack = onBack
-        print("Creating Detail view for \(user.name)")
-    }
     
     var body: some View {
         VStack {
             Text("\(user.name) in Detail View with Id: \(user.id)")
             Button("Clear All Path"){
-                onBack()
+//                onBack()
+                path = NavigationPath()
             }
         }
     }
