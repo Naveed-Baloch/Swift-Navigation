@@ -7,34 +7,41 @@
 
 import SwiftUI
 
+struct User: Hashable, Identifiable {
+    let id = UUID()
+    let name: String
+    let email: String
+}
+
 struct ContentView: View {
-    var body: some View {
-        
-        NavigationStack {
-            List(0..<1000) { number in
-                NavigationLink(value: number, label: {
-                    Text("\(number) in Label")
-                })
-            }
-            .navigationDestination(for: Int.self, destination: { selection in
-                DetailView(for: selection)
-            })
-        }
-       
+  
+  let users = [User(name: "Naveed", email: "naveed@gmail.com"), User(name: "Guest", email: "guest@gmail.com")]
+  
+  var body: some View {
+    NavigationStack {
+      List(users) { user in
+        NavigationLink(value: user, label: {
+          Text("\(user.name)")
+        })
+      }
+      .navigationDestination(for: User.self) { user in
+        UserDetailView(for: user)
+      }
     }
+  }
 }
 
 #Preview {
     ContentView()
 }
 
-struct DetailView: View {
-    let number: Int
-    init(for number: Int) {
-        self.number = number
-        print("Creating Detail view fro \(number)")
+struct UserDetailView: View {
+    let user: User
+    init(for user: User) {
+        self.user = user
+        print("Creating Detail view fro \(user.name)")
     }
     var body: some View {
-        Text("\(number) in Detail View")
+        Text("\(user.name) in Detail View with Id: \(user.id)")
     }
 }
