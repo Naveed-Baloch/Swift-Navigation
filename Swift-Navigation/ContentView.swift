@@ -9,16 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationStack {
+            List(0..<1000) { number in
+                NavigationLink(destination: {
+                    DetailView(for: number)
+                }, label: {
+                    Text("\(number) in Label")
+                })
+            }
         }
-        .padding()
+       
     }
 }
 
 #Preview {
     ContentView()
+}
+
+struct DetailView: View {
+    let number: Int
+    init(for number: Int) {
+        self.number = number
+        print("Creating Detail view fro \(number)")
+    }
+    var body: some View {
+        Text("\(number) in Detail View")
+    }
 }
