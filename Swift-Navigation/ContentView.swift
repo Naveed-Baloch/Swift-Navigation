@@ -14,21 +14,24 @@ struct User: Hashable, Identifiable {
 }
 
 struct ContentView: View {
-  
-  let users = [User(name: "Naveed", email: "naveed@gmail.com"), User(name: "Guest", email: "guest@gmail.com")]
-  
-  var body: some View {
-    NavigationStack {
-      List(users) { user in
-        NavigationLink(value: user, label: {
-          Text("\(user.name)")
-        })
-      }
-      .navigationDestination(for: User.self) { user in
-        UserDetailView(for: user)
-      }
+    
+    @State var users = [User]()
+    
+    var body: some View {
+        NavigationStack(path: $users) {
+            VStack{
+                Button("User1") {
+                    let user1 = User(name: "Guest1", email: "guest1@gmail.com")
+                    let user2 = User(name: "Guest2", email: "guest2@gmail.com")
+                    let user3 = User(name: "Guest3", email: "guest3@gmail.com")
+                    users = [user1, user2, user3]
+                }
+            }
+            .navigationDestination(for: User.self) { user in
+                UserDetailView(for: user)
+            }
+        }
     }
-  }
 }
 
 #Preview {
