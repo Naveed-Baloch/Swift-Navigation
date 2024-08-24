@@ -12,12 +12,13 @@ struct ContentView: View {
         
         NavigationStack {
             List(0..<1000) { number in
-                NavigationLink(destination: {
-                    DetailView(for: number)
-                }, label: {
+                NavigationLink(value: number, label: {
                     Text("\(number) in Label")
                 })
             }
+            .navigationDestination(for: Int.self, destination: { selection in
+                DetailView(for: selection)
+            })
         }
        
     }
