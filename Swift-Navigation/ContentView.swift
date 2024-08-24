@@ -9,29 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var users = [Guest]()
-    @State var admins = [Admin]()
+
+    @State private var path = NavigationPath()
     
     var body: some View {
-        NavigationStack(path: $admins) {
+        NavigationStack(path: $path) {
             VStack{
-                Button("User1") {
-                    let user1 = Guest(name: "Guest1", email: "guest1@gmail.com")
-                    let user2 = Guest(name: "Guest2", email: "guest2@gmail.com")
-                    let user3 = Guest(name: "Guest3", email: "guest3@gmail.com")
-                    users = [user1, user2, user3]
+                Button("Guest Navigation") {
+                    let guest = Guest(name: "guest", email: "guest@gmail.com")
+                    path.append(guest)
                 }
                 
-                Button("Navigate to admin") {
-                    let admin = Admin(name: "Admin", email: "guest1@gmail.com")
-                    admins = [admin]
+                Button("Admin Navigation") {
+                    let admin = Admin(name: "Admin", email: "admin@gmail.com")
+                    path.append(admin)
+                    path.append(admin)
+                    path.append(admin)
                 }
             }
             .navigationDestination(for: Guest.self) { user in
-                UserDetailView(for: user)
+                UserDetailView(for: user) {
+                    path = NavigationPath()
+                }
             }
             .navigationDestination(for: Admin.self) { admin in
-                UserDetailView(for: admin)
+                UserDetailView(for: admin) {
+                    path = NavigationPath()
+                }
             }
         }
     }
@@ -45,14 +49,21 @@ protocol User {
 
 struct UserDetailView<T: User>: View {
     let user: T
+    let onBack: () -> Void
     
-    init(for user: T) {
+    init(for user: T, onBack: @escaping () -> Void) {
         self.user = user
+        self.onBack = onBack
         print("Creating Detail view for \(user.name)")
     }
     
     var body: some View {
-        Text("\(user.name) in Detail View with Id: \(user.id)")
+        VStack {
+            Text("\(user.name) in Detail View with Id: \(user.id)")
+            Button("Clear All Path"){
+                onBack()
+            }
+        }
     }
 }
 
