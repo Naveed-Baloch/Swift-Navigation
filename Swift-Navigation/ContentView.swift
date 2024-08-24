@@ -10,38 +10,38 @@ import SwiftUI
 struct ContentView: View {
     
 
-    @State private var path = NavigationPath()
+    @State private var pathStore = PathStore()
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $pathStore.path) {
             VStack{
                 Button("Guest Navigation") {
                     let guest = Guest(name: "guest", email: "guest@gmail.com")
-                    path.append(guest)
+                    pathStore.path.append(guest)
                 }
                 
                 Button("Admin Navigation") {
                     let admin = Admin(name: "Admin", email: "admin@gmail.com")
-                    path.append(admin)
-                    path.append(admin)
-                    path.append(admin)
+                    pathStore.path.append(admin)
+                    pathStore.path.append(admin)
+                    pathStore.path.append(admin)
                 }
             }
             .navigationDestination(for: Guest.self) { user in
-                UserDetailView(user: user, path: $path) {
-                    path = NavigationPath()
+                UserDetailView(user: user, path: $pathStore.path) {
+                    pathStore.path = NavigationPath()
                 }
             }
             .navigationDestination(for: Admin.self) { admin in
-                UserDetailView(user: admin,path: $path) {
-                    path = NavigationPath()
+                UserDetailView(user: admin,path: $pathStore.path) {
+                    pathStore.path = NavigationPath()
                 }
             }
         }
     }
 }
 
-protocol User {
+protocol User: Codable {
     var id: UUID { get }
     var name: String { get }
     var email: String { get }
@@ -70,7 +70,7 @@ struct Guest: Hashable, Identifiable, User {
 }
 
 struct Admin: Hashable, Identifiable, User {
-    let id = UUID()
+    var id = UUID()
     let name: String
     let email: String
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D27E9312C7A30ED0096D11C /* PathStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D27E9302C7A30ED0096D11C /* PathStore.swift */; };
 		1D864F862C7A0B6F00CAA6CA /* Swift_NavigationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D864F852C7A0B6F00CAA6CA /* Swift_NavigationApp.swift */; };
 		1D864F882C7A0B6F00CAA6CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D864F872C7A0B6F00CAA6CA /* ContentView.swift */; };
 		1D864F8A2C7A0B7000CAA6CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D864F892C7A0B7000CAA6CA /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D27E9302C7A30ED0096D11C /* PathStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathStore.swift; sourceTree = "<group>"; };
 		1D864F822C7A0B6F00CAA6CA /* Swift-Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-Navigation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D864F852C7A0B6F00CAA6CA /* Swift_NavigationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_NavigationApp.swift; sourceTree = "<group>"; };
 		1D864F872C7A0B6F00CAA6CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		1D864F792C7A0B6F00CAA6CA = {
 			isa = PBXGroup;
 			children = (
+				1D27E9302C7A30ED0096D11C /* PathStore.swift */,
 				1D864F842C7A0B6F00CAA6CA /* Swift-Navigation */,
 				1D864F952C7A0B7000CAA6CA /* Swift-NavigationTests */,
 				1D864F9F2C7A0B7000CAA6CA /* Swift-NavigationUITests */,
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D27E9312C7A30ED0096D11C /* PathStore.swift in Sources */,
 				1D864F882C7A0B6F00CAA6CA /* ContentView.swift in Sources */,
 				1D864F862C7A0B6F00CAA6CA /* Swift_NavigationApp.swift in Sources */,
 			);
